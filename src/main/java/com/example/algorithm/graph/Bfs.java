@@ -5,11 +5,17 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- *  * BFS (Breadth First Search)
+ *  * BFS (Breadth First Search) -> DFS 보다 빠르다
  *  * 가까운 노드부터 우선적으로 탐색. 큐를 사용
  *  * 1. 탐색 시작 노드를 큐에 삽입하고 방문처리를 한다.
  *  * 2. 큐에서 노드를 꺼낸 뒤 해당노드의 인접 노드 중에서 방문하지 않는 노드를 모두 큐에 삽입하고 방문처리
  *  * 3. 반복
+ *
+ *  [문제 유형]
+ *  그래프의 모든 정점을 방문하는 문제 : BFS & DFS
+ *  경로의 특징을 저장하는 문제 : DFS
+ *  최단거리 문제. 미로찾기 문제 : BFS
+ *
  */
 public class Bfs {
     public static ArrayList<ArrayList<Integer>> graph = new ArrayList<>();

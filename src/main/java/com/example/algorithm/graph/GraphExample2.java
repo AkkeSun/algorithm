@@ -11,7 +11,6 @@ import java.util.Queue;
  * 이 때 탈출하기 위해 움직여야하는 최소 칸의 갯수를 구하세요. (칸을 셀 때에는 시작 칸과 마지막 칸을 모두 포함해서 계산합니다)
  */
 
-// bfs 이동문제의 경우 dto 를 만들어 다루면 좋다
 class Node {
     private int x;
     private int y;

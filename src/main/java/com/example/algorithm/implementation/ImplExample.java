@@ -1,10 +1,8 @@
 package com.example.algorithm.implementation;
 
-import org.springframework.stereotype.Service;
-
 import java.util.Map;
 
-public class ImplementationExample {
+public class ImplExample {
 
 
 

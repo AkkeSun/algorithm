@@ -6,6 +6,7 @@ package com.example.algorithm.greedy;
  * 2. N을 K로 나눈다
  * 단, 두 번째 연산은 N이 K로 나누어 떨어절 때만 가능하다
  */
+
 public class GreedyExample2 {
 
     public static void main(String[] args) {
