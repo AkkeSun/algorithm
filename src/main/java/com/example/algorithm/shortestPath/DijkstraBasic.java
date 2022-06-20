@@ -1,4 +1,4 @@
-package com.example.algorithm.dijkstra;
+package com.example.algorithm.shortestPath;
 
 
 import java.util.ArrayList;
@@ -8,10 +8,7 @@ import java.util.Scanner;
 
 /**
  * 다익스트라 알고리즘 (최단경로 구하기)
- * [ 다양한 문제 상횡 ]
- * 1. 한 지점에서 다른 한 지점까지의 최단경로
- * 2. 한 지점에서 특정 경로까지 도달가능한 노드
- * 3. 모든 지점에서 다른 모든 지점까지의 최단경로
+ * => 한 지점에서 다른 한 지점까지의 최단경로
  *
  * [ 알고리즘 ]
  * 1. 출발 노드 설정
@@ -19,6 +16,14 @@ import java.util.Scanner;
  * 3. 방문하지 않은 노드 중에서 최단거리가 가장 짧은 노드를 선택
  * 4. 해당 노드를 거쳐 다른 노드로 가는 비용을 계산해서 최단 거리 테이블을 갱신
  * 5. 3번과 4번을 반복
+ *
+ *
+ * [ 필요한 재로 ]
+ * 1. 그래프  ( index => 부모노드 인덱스 || Node => 부모노드 인덱스부터 자식노드까지의 거리 값 || 정렬 커스텀 )
+ * 2. 최단경로 배열
+ * 3. 우선순위 그래프
+ *
+ *
  *
  * [ 어떻게 코딩할까 ]
  * 총 노드가 5개이고 1번 노드부터 조사한다고 할 때
@@ -104,7 +109,7 @@ public class DijkstraBasic {
     public static int n, m, start;
 
     // 각 노드에 연결되어 있는 노드에 대한 정보를 담는 배열
-    public static ArrayList<ArrayList<Node>> graph = new ArrayList<ArrayList<Node>>();
+    public static ArrayList<Node> graph [];
 
     // 타겟노드 ~ 현재 노드까지의 최단 거리
     public static int[] d = new int[100001];
@@ -127,9 +132,9 @@ public class DijkstraBasic {
             if (now != start && d[now] == INF ) continue;
         
             // 인접 노드 확인
-            for (int i = 0; i < graph.get(now).size(); i++) {
+            for (int i = 0; i < graph[now].size(); i++) {
 
-                Node checkNode = graph.get(now).get(i);
+                Node checkNode = graph[now].get(i);
 
                 // (타겟노드 ~ 부모노드 까지의 최소 거리) + (부모노드 ~ 자식노드 비용)
                 int cost = d[now] + checkNode.getDistance();
@@ -141,7 +146,7 @@ public class DijkstraBasic {
                 // 현재 노드를 거쳐서, 다른 노드로 이동하는 거리가 더 짧은 경우
                 if (cost < d[checkNode.getIndex()]) {
                     d[checkNode.getIndex()] = cost;   // 인접노드 최소거거리 초기화
-                    pq.offer(new Node(graph.get(now).get(i).getIndex(), cost)); // 결과 값을 queue 에 등록
+                    pq.offer(new Node(graph[now].get(i).getIndex(), cost)); // 결과 값을 queue 에 등록
                 }
 
                 System.out.println("결과 : " + d[checkNode.getIndex()]);
@@ -158,9 +163,12 @@ public class DijkstraBasic {
         m = sc.nextInt();
         start = sc.nextInt();
 
+
         // 그래프 초기화
+        graph = new ArrayList[m + 1];
+
         for (int i = 0; i <= n; i++) {
-            graph.add(new ArrayList<Node>());
+            graph[i] = new ArrayList<Node>();
         }
 
         // 모든 간선 정보를 입력받기
@@ -169,10 +177,9 @@ public class DijkstraBasic {
             int b = sc.nextInt();
             int c = sc.nextInt();
             // a번 노드에서 b번 노드로 가는 비용이 c라는 의미
-            graph.get(a).add(new Node(b, c));
+            graph[a].add(new Node(b, c));
         }
 
-        
 
         // 최단 거리 테이블을 모두 무한으로 초기화
         Arrays.fill(d, INF);
