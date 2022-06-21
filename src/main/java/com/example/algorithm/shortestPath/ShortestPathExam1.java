@@ -151,7 +151,7 @@ public class ShortestPathExam1 {
                     q.offer(new Node2(childIndex, length));
                 }
 
-                System.out.println("결과 : " + minLength[index]);
+                System.out.println("결과 : " + minLength[childIndex]);
                 System.out.println("=============================");
             }
         }
